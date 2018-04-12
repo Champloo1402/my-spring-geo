@@ -16,18 +16,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+    private static final int PAGE_SIZE = 6;
+
     @Autowired
     private LocationRepository locationRepository;
 
-    @GetMapping("pages")
-    public PageCount pageCount() {
-        return new PageCount(locationRepository.count());
+    @GetMapping("count")
+    public PageCount count() {
+        return new PageCount(locationRepository.count(), PAGE_SIZE);
     }
 
     @GetMapping("geo")
     public List<Location> locations(@RequestParam(required = false, defaultValue = "0") int page) {
         return locationRepository
-                .findAll(PageRequest.of(page, 10, Sort.Direction.DESC, "id"))
+                .findAll(PageRequest.of(page, PAGE_SIZE, Sort.Direction.DESC, "id"))
                 .getContent();
     }
 }
