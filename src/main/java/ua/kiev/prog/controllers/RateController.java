@@ -1,4 +1,4 @@
-package ua.kiev.prog;
+package ua.kiev.prog.controllers;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
