@@ -27,7 +27,7 @@ public class AdminController {
     @GetMapping("geo")
     public List<Location> locations(@RequestParam(required = false, defaultValue = "0") int page) {
         return locationRepository
-                .findAll(PageRequest.of(page, 10, Sort.Direction.DESC))
+                .findAll(PageRequest.of(page, 10, Sort.Direction.DESC, "id"))
                 .getContent();
     }
 }
