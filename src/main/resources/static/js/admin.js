@@ -13,6 +13,11 @@ $(document).ready(function(){
         }
     });
 
+    $('ul.pages li').click(function(event) {
+        console.log(event.target.id);
+        loadData(event.target.id);
+    });
+
     loadData(0);
 });
 
