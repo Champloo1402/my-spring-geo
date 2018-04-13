@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import ua.kiev.prog.dto.LocationDTO;
-import ua.kiev.prog.model.Location;
 
 @Component
 public class GeoRetriever {
