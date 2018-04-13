@@ -8,8 +8,6 @@ function loadPages() {
         var pageCount = (data.count / data.pageSize) + (data.count % data.pageSize > 0 ? 1 : 0);
         var i;
 
-        $("#pages").empty();
-
         for (i = 1; i <= pageCount; i++) {
             $('#pages').append(
                 $('<li>').attr('class', 'page-item').append(
@@ -25,6 +23,8 @@ function loadPages() {
 }
 
 function loadData(page) {
+    $("#data > tbody").empty();
+
     $.getJSON('/admin/geo?page=' + page, function(data) {
         var i;
 
