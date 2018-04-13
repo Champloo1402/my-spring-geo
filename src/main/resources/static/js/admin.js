@@ -9,7 +9,7 @@ function loadPages() {
         var i;
 
         for (i = 1; i <= pageCount; i++) {
-            var id = "page" + i;
+            var id = i;
 
             $('#pages').append(
                 $('<li>').attr('class', 'page-item').append(
