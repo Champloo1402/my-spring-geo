@@ -18,7 +18,7 @@ function loadPages() {
         }
     });
 
-    $('#pages li').click(function(event) {
+    $("#pages").on("click", ".page-link", function(event){
         console.log(event.target.id);
         loadData(event.target.id);
     });
