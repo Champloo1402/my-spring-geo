@@ -8,12 +8,12 @@ function loadPages() {
         var pageCount = (data.count / data.pageSize) + (data.count % data.pageSize > 0 ? 1 : 0);
         var i;
 
-        for (i = 1; i <= pageCount; i++) {
-            var id = i;
+        $("#pages").empty();
 
+        for (i = 1; i <= pageCount; i++) {
             $('#pages').append(
                 $('<li>').attr('class', 'page-item').append(
-                    $('<a>').attr('class', 'page-link').attr('id', id).append('Page ' + i))
+                    $('<a>').attr('class', 'page-link').attr('id', i - 1).append('Page ' + i))
             );
         }
     });
