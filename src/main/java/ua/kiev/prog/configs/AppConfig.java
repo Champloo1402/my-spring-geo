@@ -1,4 +1,4 @@
-package ua.kiev.prog;
+package ua.kiev.prog.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

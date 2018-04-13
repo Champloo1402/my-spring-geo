@@ -1,35 +1,35 @@
 package ua.kiev.prog.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ua.kiev.prog.model.Location;
+import ua.kiev.prog.dto.LocationDTO;
 import ua.kiev.prog.model.PageCount;
-import ua.kiev.prog.repo.LocationRepository;
+import ua.kiev.prog.services.LocationService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-    private static final int PAGE_SIZE = 6;
+    private static final int PAGE_SIZE = 5;
 
-    @Autowired
-    private LocationRepository locationRepository;
+    private final LocationService locationService;
+
+    public AdminController(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     @GetMapping("count")
     public PageCount count() {
-        return new PageCount(locationRepository.count(), PAGE_SIZE);
+        return PageCount.of(locationService.count(), PAGE_SIZE);
     }
 
     @GetMapping("geo")
-    public List<Location> locations(@RequestParam(required = false, defaultValue = "0") int page) {
-        return locationRepository
-                .findAll(PageRequest.of(page, PAGE_SIZE, Sort.Direction.DESC, "id"))
-                .getContent();
+    public List<LocationDTO> locations(@RequestParam(required = false, defaultValue = "0") int page) {
+        return locationService.getLocations(PageRequest.of(page, PAGE_SIZE, Sort.Direction.DESC, "id"));
     }
 }

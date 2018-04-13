@@ -16,8 +16,7 @@ function loadPages() {
         }
     });
 
-    $("#pages").on("click", ".page-link", function(event){
-        console.log(event.target.id);
+    $("#pages").on("click", ".page-link", function(event) {
         loadData(event.target.id);
     });
 }
