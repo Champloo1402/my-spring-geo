@@ -1,4 +1,4 @@
-package ua.kiev.prog.model;
+package ua.kiev.prog.json;
 
 import lombok.Data;
 

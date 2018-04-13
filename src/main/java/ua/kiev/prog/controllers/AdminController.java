@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.kiev.prog.dto.LocationDTO;
-import ua.kiev.prog.model.PageCount;
+import ua.kiev.prog.dto.PageCountDTO;
 import ua.kiev.prog.services.LocationService;
 
 import java.util.List;
@@ -24,8 +24,8 @@ public class AdminController {
     }
 
     @GetMapping("count")
-    public PageCount count() {
-        return PageCount.of(locationService.count(), PAGE_SIZE);
+    public PageCountDTO count() {
+        return PageCountDTO.of(locationService.count(), PAGE_SIZE);
     }
 
     @GetMapping("geo")

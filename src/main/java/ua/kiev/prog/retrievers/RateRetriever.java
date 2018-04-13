@@ -4,7 +4,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import ua.kiev.prog.model.Rate;
+import ua.kiev.prog.json.Rate;
 
 @Component
 public class RateRetriever {
