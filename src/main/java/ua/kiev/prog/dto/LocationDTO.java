@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Data
+@NoArgsConstructor
 public class LocationDTO {
     private String ip;
     private String city;
