@@ -9,7 +9,7 @@ import ua.kiev.prog.json.Rate;
 @Component
 public class RateRetriever {
 
-    private static final String URL = "http://data.fixer.io/api/latest?access_key=a7f108773f94f0de03695781411ce94b";
+    private static final String URL = "https://data.fixer.io/api/latest?access_key=36f7e9bf18cc621aba8ffd6e18ffcca9";
 
     @Cacheable("rates")
     public Rate getRate() {
