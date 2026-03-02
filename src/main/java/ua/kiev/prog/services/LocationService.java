@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface LocationService {
     void save(LocationDTO dto);
-    long count();
-    List<LocationDTO> getLocations(Pageable pageable);
+    long count(String city);
+    List<LocationDTO> getLocations(String city, Pageable pageable);
 }

@@ -24,12 +24,12 @@ public class AdminController {
     }
 
     @GetMapping("count")
-    public PageCountDTO count() {
-        return PageCountDTO.of(locationService.count(), PAGE_SIZE);
+    public PageCountDTO count(@RequestParam(required = false) String city) {
+        return PageCountDTO.of(locationService.count(city), PAGE_SIZE);
     }
 
     @GetMapping("geo")
-    public List<LocationDTO> locations(@RequestParam(required = false, defaultValue = "0") int page) {
-        return locationService.getLocations(PageRequest.of(page, PAGE_SIZE, Sort.Direction.DESC, "id"));
+    public List<LocationDTO> locations(@RequestParam(required = false, defaultValue = "") String city, @RequestParam(required = false, defaultValue = "0") int page) {
+        return locationService.getLocations(city, PageRequest.of(page, PAGE_SIZE, Sort.Direction.DESC, "id"));
     }
 }

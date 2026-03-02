@@ -27,19 +27,30 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<LocationDTO> getLocations(Pageable pageable) {
-        List<Location> list = locationRepository.findAll(pageable).getContent();
+    public List<LocationDTO> getLocations(String city, Pageable pageable) {
         List<LocationDTO> res = new ArrayList<>();
+        List<Location> locs;
 
-        for (Location loc : list)
+        if (city == null || city.isEmpty()) {
+            locs = locationRepository.findAll(pageable).getContent();
+
+        } else {
+            locs = locationRepository.findByCity(city, pageable).getContent();
+
+        }
+        for (Location loc : locs) {
             res.add(loc.toDTO());
+        }
 
         return res;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public long count() {
-        return locationRepository.count();
+    public long count(String city) {
+        if (city == null || city.isEmpty()) {
+            return locationRepository.count();
+        }
+        return locationRepository.countByCity(city);
     }
 }
