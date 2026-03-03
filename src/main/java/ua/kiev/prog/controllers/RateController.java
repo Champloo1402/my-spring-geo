@@ -24,6 +24,9 @@ public class RateController {
     @GetMapping("/rate")
     public Rate rate(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");
+        if (ip != null && ip.contains(",")) {
+            ip = ip.split(",")[0].trim();
+        }
         if (ip == null) ip = request.getRemoteAddr();
 
         LocationDTO location = geoRetriever.getLocation(ip);
