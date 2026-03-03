@@ -1,11 +1,28 @@
+var currentCity = '';
+
 $(document).ready(function(){
     loadPages();
     loadData(0);
 });
 
+function search() {
+    currentCity = $('#citySearch').val();
+    loadPages();
+    loadData(0);
+}
+
+function clearSearch() {
+    currentCity = '';
+    $('#citySearch').val('');
+    loadPages();
+    loadData(0);
+}
+
 function loadPages() {
-    $.getJSON('/admin/count', function(data) {
-        var pageCount = (data.count / data.pageSize) + (data.count % data.pageSize > 0 ? 1 : 0);
+    $('#pages').empty();
+
+    $.getJSON('/admin/count?city=' + currentCity, function(data) {
+        var pageCount = Math.ceil(data.count / data.pageSize);
         var i;
 
         for (i = 1; i <= pageCount; i++) {
@@ -24,7 +41,7 @@ function loadPages() {
 function loadData(page) {
     $("#data > tbody").empty();
 
-    $.getJSON('/admin/geo?page=' + page, function(data) {
+    $.getJSON('/admin/geo?page=' + page + '&city=' + currentCity, function(data) {
         var i;
 
         for (i = 0; i < data.length; i++) {
